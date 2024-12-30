@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Shared Preferences</string>
+    <string name="user_name">User Name</string>
+    <string name="count_button">0</string>
 </resources>
