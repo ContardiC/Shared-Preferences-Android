@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,8 +18,9 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
     EditText userName;
     EditText userMessage;
-    Button counter;
+    Button mButton;
     CheckBox remember;
+    Button mButtonSave;
     int count = 0;
     String name;
     String message;
@@ -36,14 +38,20 @@ public class MainActivity extends AppCompatActivity {
         });
         userName = findViewById(R.id.editTextName);
         userMessage = findViewById(R.id.editTextMessage);
-        counter = findViewById(R.id.button);
+        mButton = findViewById(R.id.button);
         remember = findViewById(R.id.checkBox);
 
-        counter.setOnClickListener(new View.OnClickListener() {
+        mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 count++;
-                counter.setText(String.valueOf(count));
+                mButton.setText(String.valueOf(count));
+            }
+        });
+        mButtonSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveData();
             }
         });
     }
@@ -51,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        saveData();
 
     }
     public void saveData() {
@@ -60,8 +69,11 @@ public class MainActivity extends AppCompatActivity {
         message = userMessage.getText().toString();
         isChecked = remember.isChecked();
         SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.putString("name", name);
-        editor.putString("message", message);
-        editor.putBoolean("isChecked", isChecked);
+        editor.putString("key name", name);
+        editor.putString("key message", message);
+        editor.putInt("key count", count);
+        editor.putBoolean("key remember", isChecked);
+        editor.commit(); // scrive i dati in memoria
+        Toast.makeText(getApplicationContext(), "Your data has been Saved", Toast.LENGTH_SHORT).show();
     }
 }

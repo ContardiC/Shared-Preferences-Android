@@ -16,8 +16,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:ems="10"
-        android:inputType="text"
         android:hint="@string/user_name"
+        android:inputType="text"
         android:text="" />
 
     <EditText
@@ -48,5 +48,14 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:text="CheckBox" />
+        android:text="@string/remember_me_checkbox" />
+
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/save_data_button" />
 </LinearLayout>

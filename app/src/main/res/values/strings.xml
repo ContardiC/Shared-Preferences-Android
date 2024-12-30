@@ -2,4 +2,6 @@
     <string name="app_name">Shared Preferences</string>
     <string name="user_name">User Name</string>
     <string name="count_button">0</string>
+    <string name="save_data_button">Save Data</string>
+    <string name="remember_me_checkbox">Remember Me</string>
 </resources>
