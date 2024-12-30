@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         userName = findViewById(R.id.editTextName);
         userMessage = findViewById(R.id.editTextMessage);
         mButton = findViewById(R.id.button);
+        mButtonSave = findViewById(R.id.buttonSave);
         remember = findViewById(R.id.checkBox);
 
         mButton.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 saveData();
             }
         });
+        retrieveData();
     }
 
     @Override
@@ -75,5 +77,16 @@ public class MainActivity extends AppCompatActivity {
         editor.putBoolean("key remember", isChecked);
         editor.commit(); // scrive i dati in memoria
         Toast.makeText(getApplicationContext(), "Your data has been Saved", Toast.LENGTH_SHORT).show();
+    }
+    public void retrieveData(){
+        mSharedPreferences = getSharedPreferences("saveData", Context.MODE_PRIVATE);
+        name = mSharedPreferences.getString("key name", "");
+        message = mSharedPreferences.getString("key message", "");
+        count = mSharedPreferences.getInt("key count", 0);
+        isChecked = mSharedPreferences.getBoolean("key remember", false);
+        userName.setText(name);
+        userMessage.setText(message);
+        mButton.setText(String.valueOf(count));
+        remember.setChecked(isChecked);
     }
 }
